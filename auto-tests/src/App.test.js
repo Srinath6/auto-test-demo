@@ -14,7 +14,7 @@ describe("App", () => {
             {
               userId: 1,
               id: 1,
-              title: "Kaliteye hoşgeldin",
+              title: "Kaliteye hoşge",
               completed: false,
             },
           ]),
