@@ -1,19 +1,24 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Addition from "./Addition";
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+import React from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((json) => setTodos(json));
+  }, []);
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Addition />
-    </ThemeProvider>
+    <>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <h1>{todo.title}</h1>
+          <p>{todo.completed}</p>
+        </div>
+      ))}
+    </>
   );
 }
 
